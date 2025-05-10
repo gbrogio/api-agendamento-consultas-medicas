@@ -8,6 +8,9 @@ import com.example.demo.Entities.Paciente;
 import java.time.LocalDate;
 import java.util.Optional;
 
+/**
+ * Interface de repositório para a entidade Paciente.
+ */
 @Repository
 public interface IPacienteRepository extends JpaRepository<Paciente, Long> {
     Optional<Paciente> findByid(Long id);

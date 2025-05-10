@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+//validaçao dos atributos da classe PacienteDTO
 @Data
 @NoArgsConstructor
 public class PacienteDTO {

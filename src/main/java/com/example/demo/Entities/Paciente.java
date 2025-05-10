@@ -14,6 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+//criando atributos da classe Paciente
 @Data
 @Entity
 @Table(name = "Paciente")
