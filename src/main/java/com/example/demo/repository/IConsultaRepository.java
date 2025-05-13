@@ -10,38 +10,24 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.Entities.Consulta;
-import com.example.demo.Entities.Medico;
-import com.example.demo.Entities.Paciente;
 
 @Repository
 public interface IConsultaRepository extends JpaRepository<Consulta, Long> {
     Optional<Consulta> findById(Long id);
-    
-    List<Consulta> findByPaciente(Paciente paciente);
-    
-    List<Consulta> findByMedico(Medico medico);
-    
-    // Manter também métodos compatíveis com busca por ID diretamente
-    @Query("SELECT c FROM Consulta c WHERE c.paciente.id = :pacienteId")
-    List<Consulta> findByPacienteId(@Param("pacienteId") Long pacienteId);
-    
-    @Query("SELECT c FROM Consulta c WHERE c.medico.id = :medicoId")
-    List<Consulta> findByMedicoId(@Param("medicoId") Long medicoId);
-    
-    List<Consulta> findByStatus(String status);
-    
-    List<Consulta> findByDataHoraBetween(LocalDateTime inicio, LocalDateTime fim);
-    
+
+    @Query("""
+            SELECT c FROM Consulta c
+            WHERE (:medicoId IS NULL OR c.medico.id = :medicoId)
+              AND (:pacienteId IS NULL OR c.paciente.id = :pacienteId)
+              AND (:status IS NULL OR c.status = :status)
+              AND (:dataInicio IS NULL OR c.dataHora >= :dataInicio)
+              AND (:dataFim IS NULL OR c.dataHora <= :dataFim)
+            """)
+    List<Consulta> findAllUsing(@Param("medicoId") Long medicoId, @Param("pacienteId") Long pacienteId,
+            @Param("status") String status, @Param("dataInicio") LocalDateTime dataInicio,
+            @Param("dataFim") LocalDateTime dataFim);
+
     @Query("SELECT c FROM Consulta c WHERE c.medico.id = :medicoId AND c.dataHora BETWEEN :inicio AND :fim")
-    List<Consulta> findByMedicoIdAndDataHoraBetween(
-        @Param("medicoId") Long medicoId, 
-        @Param("inicio") LocalDateTime inicio, 
-        @Param("fim") LocalDateTime fim
-    );
-    
-    @Query("SELECT c FROM Consulta c WHERE c.paciente.id = :pacienteId AND c.status = :status")
-    List<Consulta> findByPacienteIdAndStatus(
-        @Param("pacienteId") Long pacienteId, 
-        @Param("status") String status
-    );
+    List<Consulta> findByMedicoIdAndDataHoraBetween(@Param("medicoId") Long medicoId,
+            @Param("inicio") LocalDateTime inicio, @Param("fim") LocalDateTime fim);
 }
