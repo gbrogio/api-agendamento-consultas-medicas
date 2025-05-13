@@ -29,10 +29,6 @@ public class PacienteDTO {
     @NotBlank(message = "O e-mail é obrigatório")
     private String email;
 
-    @NotBlank(message = "A senha é obrigatória")
-    @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres")
-    private String senha;
-
     @NotNull(message = "A data de nascimento é obrigatória")
     @Size(min = 10, max = 10, message = "A data de nascimento deve ter o formato dd/MM/yyyy")
     @Past(message = "A data de nascimento deve ser uma data passada")
