@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.Entities.Paciente;
 
 import com.example.demo.dto.PacienteDTO;
-//import com.example.demo.service.PacienteService;
+import com.example.demo.service.PacienteService;
 import com.example.demo.service.Utils.ApiResponse;
 import com.example.demo.service.Utils.ErrorResponse;
 
@@ -30,14 +30,14 @@ public class PacienteController {
     @Operation(summary = "Lista todos os paciente", description = "Retorna uma lista com todos os paciente cadastrados")
     @GetMapping
     public ResponseEntity<List<PacienteDTO>> listarPaciente() {
-        List<PacienteDTO> paciente = PacienteService.listarTodos();
-        return ResponseEntity.ok(Paciente);
+        List<PacienteDTO> paciente = pacienteService.listarTodos();
+        return ResponseEntity.ok(paciente);
     }
 
     @Operation(summary = "Busca um paciente por ID", description = "Retorna os detalhes de um paciente específico")
     @GetMapping("/{id}")
     public ResponseEntity<PacienteDTO> buscarPorId(@PathVariable Long id) {
-        Optional<PacienteDTO> pacienteDTO = PacienteService.buscarPorId(id);
+        Optional<PacienteDTO> pacienteDTO = pacienteService.buscarPorId(id);
         return pacienteDTO.map(ResponseEntity::ok)
                          .orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -68,7 +68,7 @@ public class PacienteController {
     @Operation(summary = "Deleta um paciente", description = "Remove um paciente do sistema pelo ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarPaciente(@PathVariable Long id) {
-        PacienteService.deletar(id);
+        pacienteService.deletar(id);
         return ResponseEntity.noContent().build();
     }
 }
