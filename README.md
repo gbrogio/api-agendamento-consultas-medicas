@@ -112,5 +112,5 @@ Permitir que pacientes agendem consultas médicas, que médicos visualizem suas 
 
 **Disciplina:** Programação Orientada a Objetos em Java\
 **Projeto Avaliativo:** API para Agendamento de Consultas Médicas\
-**Alunos:** Antônio Neto, Guilherme Brogio, Lucas Gabriel, Matheus Guilherme, Leonardo Ribeiro\
+**Alunos:** Antônio Neto, Guilherme Brogio, Lucas Gabriel, Matheus Guilherme\
 **Professor:** Fabrício
