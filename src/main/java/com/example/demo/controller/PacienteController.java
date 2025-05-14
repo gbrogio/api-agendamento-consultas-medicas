@@ -19,7 +19,7 @@ import jakarta.validation.Valid;
 
 @Tag(name = "Paciente", description = "Endpoints para gerenciamento de Paciente")
 @RestController
-@RequestMapping("api/Paciente")
+@RequestMapping("api/paciente")
 public class PacienteController {
 
     @Autowired
@@ -37,7 +37,7 @@ public class PacienteController {
     public ResponseEntity<PacienteDTO> buscarPorId(@PathVariable Long id) {
         Optional<PacienteDTO> pacienteDTO = pacienteService.buscarPorId(id);
         return pacienteDTO.map(ResponseEntity::ok)
-                         .orElseGet(() -> ResponseEntity.notFound().build());
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Operation(summary = "Cria um novo Paciente", description = "Cadastra um novo paciente no sistema")
@@ -46,7 +46,7 @@ public class PacienteController {
         try {
             // Tenta salvar o paciente
             PacienteDTO savedPaciente = pacienteService.salvar(pacienteDTO);
-            
+
             // Retorna sucesso com o PacienteDTO salvo
             ApiResponse<PacienteDTO> response = new ApiResponse<>(savedPaciente);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -62,11 +62,24 @@ public class PacienteController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
-
+        //atualizando para inativo 
     @Operation(summary = "Deleta um paciente", description = "Remove um paciente do sistema pelo ID")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarPaciente(@PathVariable Long id) {
-        pacienteService.deletar(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ApiResponse<String>> deletarPaciente(@PathVariable Long id) {
+        try {
+            pacienteService.deletar(id);
+            ApiResponse<String> response = new ApiResponse<>("Paciente deletado com sucesso");
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (IllegalArgumentException e) {
+            // Cria um erro com a mensagem específica
+            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage());
+            ApiResponse<String> response = new ApiResponse<>(errorResponse);
+            return ResponseEntity.badRequest().body(response);
+        } catch (Exception e) {
+            // Cria um erro genérico
+            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage());
+            ApiResponse<String> response = new ApiResponse<>(errorResponse);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
 }
