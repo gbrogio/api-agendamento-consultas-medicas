@@ -8,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.Entities.Paciente;
-
 import com.example.demo.dto.PacienteDTO;
 import com.example.demo.service.PacienteService;
 import com.example.demo.service.Utils.ApiResponse;
