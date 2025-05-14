@@ -34,6 +34,12 @@ public class PacienteService {
     }
 
     public void deletar(Long id) {
-        pacienteRepository.deleteById(id);
+        Optional<Paciente> paciente = pacienteRepository.findById(id);
+        if (paciente.isPresent()) {
+            paciente.get().setAtivo(false); // Desativa o paciente
+            pacienteRepository.save(paciente.get()); // Salva a alteração
+        } else {
+            throw new IllegalArgumentException("Paciente não encontrado com o ID: " + id);
+        }
     }
 }
