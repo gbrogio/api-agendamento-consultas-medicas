@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 public class PacienteDTO {
     
     private Long id;
-    private boolean ativo = true;
 
     @NotBlank(message = "O nome é obrigatório")
     @Size(min = 3, max = 50, message = "O nome deve ter entre 3 e 50 caracteres")
@@ -26,12 +25,12 @@ public class PacienteDTO {
     @NotBlank(message = "O e-mail é obrigatório")
     private String email;
 
-    @NotBlank(message = "O telefone é obrigatório")
-    @Size(min = 10, max = 15, message = "O telefone deve ter entre 10 e 15 caracteres")
-    private String telefone;
-
     /*@NotNull(message = "A data de nascimento é obrigatória")
     @Size(min = 10, max = 10, message = "A data de nascimento deve ter o formato dd/MM/yyyy")
     @Past(message = "A data de nascimento deve ser uma data passada")
     private LocalDate dataNascimento;*/
+
+    @NotBlank(message = "O telefone é obrigatório")
+    @Size(min = 10, max = 15, message = "O telefone deve ter entre 10 e 15 caracteres")
+    private String telefone;
 }
