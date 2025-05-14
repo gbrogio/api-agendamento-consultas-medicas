@@ -33,7 +33,27 @@ public class PacienteService {
         return pacienteMapper.toDTO(pacienteRepository.save(paciente));
     }
 
+    public PacienteDTO atualizar(Long id, PacienteDTO pacienteDTO) {
+        Optional<Paciente> pacienteOptional = pacienteRepository.findById(id);
+        if (pacienteOptional.isPresent()) {
+            Paciente paciente = pacienteOptional.get();
+            paciente.setNome(pacienteDTO.getNome());
+            paciente.setCpf(pacienteDTO.getCpf());
+            paciente.setEmail(pacienteDTO.getEmail());
+            paciente.setTelefone(pacienteDTO.getTelefone());
+            return pacienteMapper.toDTO(pacienteRepository.save(paciente));
+        } else {
+            throw new IllegalArgumentException("Paciente não encontrado com o ID: " + id);
+        }
+    }
+
     public void deletar(Long id) {
-        pacienteRepository.deleteById(id);
+        Optional<Paciente> paciente = pacienteRepository.findById(id);
+        if (paciente.isPresent()) {
+            paciente.get().setAtivo(false); // Desativa o paciente
+            pacienteRepository.save(paciente.get()); // Salva a alteração
+        } else {
+            throw new IllegalArgumentException("Paciente não encontrado com o ID: " + id);
+        }
     }
 }
