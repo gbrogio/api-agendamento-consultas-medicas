@@ -38,8 +38,8 @@ public class Paciente {
     @Column(nullable = false)
     private String telefone;
 
-    @Column(nullable = false)
-    private LocalDate dataNascimento;
+    /*@Column(nullable = false)
+    private LocalDate dataNascimento;*/
 
     public Paciente
 (String nome, String cpf, String email, String telefone, LocalDate dataNascimento) {
@@ -47,6 +47,6 @@ public class Paciente {
         this.cpf = cpf;
         this.email = email;
         this.telefone = telefone;
-        this.dataNascimento = dataNascimento;   
+        //this.dataNascimento = dataNascimento;   
     }
 }

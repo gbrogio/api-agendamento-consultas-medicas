@@ -29,10 +29,10 @@ public class PacienteDTO {
     @NotBlank(message = "O e-mail é obrigatório")
     private String email;
 
-    @NotNull(message = "A data de nascimento é obrigatória")
+    /*@NotNull(message = "A data de nascimento é obrigatória")
     @Size(min = 10, max = 10, message = "A data de nascimento deve ter o formato dd/MM/yyyy")
     @Past(message = "A data de nascimento deve ser uma data passada")
-    private LocalDate dataNascimento;
+    private LocalDate dataNascimento;*/
 
     @NotBlank(message = "O telefone é obrigatório")
     @Size(min = 10, max = 15, message = "O telefone deve ter entre 10 e 15 caracteres")
