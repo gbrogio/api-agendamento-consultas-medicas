@@ -62,6 +62,31 @@ public class PacienteController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
+
+    @Operation(summary = "Atualiza um paciente", description = "Atualiza os dados de um paciente existente")
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse<PacienteDTO>> atualizarPaciente(@PathVariable Long id,
+            @Valid @RequestBody PacienteDTO pacienteDTO) {
+        try {
+            // Tenta salvar o paciente
+            PacienteDTO updatedPaciente = pacienteService.atualizar(id,pacienteDTO);
+
+            // Retorna sucesso com o PacienteDTO atualizado
+            ApiResponse<PacienteDTO> response = new ApiResponse<>(updatedPaciente);
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            // Cria um erro com a mensagem específica
+            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage());
+            ApiResponse<PacienteDTO> response = new ApiResponse<>(errorResponse);
+            return ResponseEntity.badRequest().body(response);
+        } catch (Exception e) {
+            // Cria um erro genérico
+            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage());
+            ApiResponse<PacienteDTO> response = new ApiResponse<>(errorResponse);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
         //atualizando para inativo 
     @Operation(summary = "Deleta um paciente", description = "Remove um paciente do sistema pelo ID")
     @DeleteMapping("/{id}")
