@@ -1,6 +1,6 @@
 package com.example.demo.Entities;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,8 +33,8 @@ public class Medico {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
-    private LocalDate dataNascimento;
+    /*@Column(nullable = false)
+    private LocalDate dataNascimento;*/
 
     @Column(nullable = false, unique = true)
     private String crm;
@@ -42,9 +42,9 @@ public class Medico {
     @Column(name = "especialidade_id", nullable = false)
     private Long especialidadeId;
 
-    public Medico(String nome, LocalDate dataNascimento, String crm, Long especialidade) {
+    public Medico(String nome, /*LocalDate dataNascimento,*/ String crm, Long especialidade) {
         this.nome = nome;
-        this.dataNascimento = dataNascimento;
+        //this.dataNascimento = dataNascimento;
         this.crm = crm;
         this.especialidadeId = especialidade;
     }
