@@ -30,8 +30,4 @@ public class PacienteDTO {
     @Size(min = 10, max = 15, message = "O telefone deve ter entre 10 e 15 caracteres")
     private String telefone;
 
-    /*@NotNull(message = "A data de nascimento é obrigatória")
-    @Size(min = 10, max = 10, message = "A data de nascimento deve ter o formato dd/MM/yyyy")
-    @Past(message = "A data de nascimento deve ser uma data passada")
-    private LocalDate dataNascimento;*/
 }
