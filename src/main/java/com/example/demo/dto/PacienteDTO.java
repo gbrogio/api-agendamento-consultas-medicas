@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 public class PacienteDTO {
     
     private Long id;
-    private boolean ativo = true;
 
     @NotBlank(message = "O nome é obrigatório")
     @Size(min = 3, max = 50, message = "O nome deve ter entre 3 e 50 caracteres")
@@ -30,4 +29,7 @@ public class PacienteDTO {
     @Size(min = 10, max = 15, message = "O telefone deve ter entre 10 e 15 caracteres")
     private String telefone;
 
+    @NotBlank(message = "O telefone é obrigatório")
+    @Size(min = 10, max = 15, message = "O telefone deve ter entre 10 e 15 caracteres")
+    private String telefone;
 }
