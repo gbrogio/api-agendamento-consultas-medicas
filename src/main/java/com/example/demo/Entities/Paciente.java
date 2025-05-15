@@ -1,7 +1,5 @@
 package com.example.demo.Entities;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,15 +36,14 @@ public class Paciente {
     @Column(nullable = false)
     private String telefone;
 
-    /*@Column(nullable = false)
-    private LocalDate dataNascimento;*/
+    @Column(nullable = false)
+    private boolean ativo = true;
 
     public Paciente
-(String nome, String cpf, String email, String telefone, LocalDate dataNascimento) {
+(String nome, String cpf, String email, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
-        this.telefone = telefone;
-        //this.dataNascimento = dataNascimento;   
+        this.telefone = telefone;  
     }
 }
