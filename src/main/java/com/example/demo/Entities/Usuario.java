@@ -42,5 +42,14 @@ public class Usuario {
 
     @Column(nullable = false)
     private String telefone;
+
+    public Usuario(String nome, String cpf, String email, String senha, LocalDate dataNascimento, String telefone) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.senha = senha;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+    }
 }
 

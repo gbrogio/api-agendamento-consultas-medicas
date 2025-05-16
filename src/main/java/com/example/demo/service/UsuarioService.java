@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-
 import com.example.demo.Entities.Usuario;
 import com.example.demo.dto.UsuarioDTO;
 import com.example.demo.mapper.UsuarioMapper;
@@ -10,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 
 @Service
 public class UsuarioService {
