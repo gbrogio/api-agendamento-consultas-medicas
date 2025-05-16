@@ -42,10 +42,5 @@ public class Medico {
     @Column(name = "especialidade_id", nullable = false)
     private Long especialidadeId;
 
-    public Medico(String nome, /*LocalDate dataNascimento,*/ String crm, Long especialidade) {
-        this.nome = nome;
-        //this.dataNascimento = dataNascimento;
-        this.crm = crm;
-        this.especialidadeId = especialidade;
-    }
+    
 }

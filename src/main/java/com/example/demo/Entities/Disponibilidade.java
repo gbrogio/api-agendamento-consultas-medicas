@@ -38,22 +38,6 @@ public class Disponibilidade {
    @Column(nullable = false)
    private LocalTime horarioFim;
 
-   public Disponibilidade (Long medicoId,String diaDaSemana, LocalTime horarioInicio, LocalTime horarioFim){
-    this.medicoId = medicoId;
-    this.diaDaSemana = diaDaSemana;
-    this.horarioInicio = horarioInicio;
-    this.horarioFim = horarioFim;
-   }
-
-   public String getDiaDaSemana(){
-        return diaDaSemana;
-    }
-
-    public LocalTime getHorarioInicio(){
-        return horarioInicio;
-    }
-
-    public LocalTime getHorarioFim(){
-        return horarioFim;
-    }
+   
+   
 }
