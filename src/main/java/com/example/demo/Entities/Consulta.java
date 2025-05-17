@@ -45,11 +45,5 @@ public class Consulta {
     @Column(columnDefinition = "TEXT")
     private String observacoes;
 
-    public Consulta(Paciente paciente, Medico medico, LocalDateTime dataHora, String status, String observacoes) {
-        this.paciente = paciente;
-        this.medico = medico;
-        this.dataHora = dataHora;
-        this.status = status;
-        this.observacoes = observacoes;
-    }
+
 }
