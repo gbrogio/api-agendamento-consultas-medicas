@@ -2,26 +2,30 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Entities.Disponibilidade;
 import com.example.demo.dto.DisponibilidadeDTO;
+import com.example.demo.mapper.DisponibildadeMapper;
 import com.example.demo.repository.IDisponibilidadeRepository;
 
 @Service
 public class DisponibilidadeService {
-    private final IDisponibilidadeRepository disponibilidadeRepository;
 
-    public DisponibilidadeService(IDisponibilidadeRepository disponibilidadeRepository){
-        this.disponibilidadeRepository = disponibilidadeRepository;
-    }
+    @Autowired
+    private DisponibildadeMapper disponibilidadeMapper;
+    
+    @Autowired
+    private IDisponibilidadeRepository disponibilidadeRepository;
 
     public DisponibilidadeDTO registrarDisponibilidade(Long medicoId, DisponibilidadeDTO disponibilidadeDTO){
-        Disponibilidade disponibilidade = new Disponibilidade(medicoId, disponibilidadeDTO.getDiaDaSemana(),
-        disponibilidadeDTO.getHorarioInicio(), disponibilidadeDTO.getHorarioFim());
+        /*Disponibilidade disponibilidade = disponibilidadeMapper.toEntity(medicoId, disponibilidadeDTO.getDiaDaSemana(),
+        disponibilidadeDTO.getHorarioInicio(), disponibilidadeDTO.getHorarioFim());*/
         
-        return Disponibilidade.toDTO(disponibilidadeRepository.save(disponibilidadeDTO));
-        // return disponibilidadeRepository.save(disponibilidade);
+        Disponibilidade disponibilidade = disponibilidadeMapper.toEntity(disponibilidadeDTO);
+
+        return disponibilidadeMapper.toDTO(disponibilidadeRepository.save(disponibilidade));
     }
 
     public List<Disponibilidade> listarDisponibilidade(Long medicoId){

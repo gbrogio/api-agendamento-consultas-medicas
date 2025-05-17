@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DisponibilidadeDTO {
 
+    private Long Id;
     private Long medicoId;
     
     @NotBlank(message = "É obrigatório informar a data da consulta!")
