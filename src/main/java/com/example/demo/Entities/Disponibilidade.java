@@ -45,15 +45,4 @@ public class Disponibilidade {
     this.horarioFim = horarioFim;
    }
 
-   public String getDiaDaSemana(){
-        return diaDaSemana;
-    }
-
-    public LocalTime getHorarioInicio(){
-        return horarioInicio;
-    }
-
-    public LocalTime getHorarioFim(){
-        return horarioFim;
-    }
 }

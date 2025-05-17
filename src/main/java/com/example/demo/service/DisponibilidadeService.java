@@ -1,11 +1,11 @@
 package com.example.demo.service;
 
-import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Entities.Disponibilidade;
+import com.example.demo.dto.DisponibilidadeDTO;
 import com.example.demo.repository.IDisponibilidadeRepository;
 
 @Service
@@ -16,13 +16,16 @@ public class DisponibilidadeService {
         this.disponibilidadeRepository = disponibilidadeRepository;
     }
 
-    public Disponibilidade registrarDisponibilidade(Long medicoId, String diaDaSemana, LocalTime horarioInicio, LocalTime horarioFim){
-        Disponibilidade disponibilidade = new Disponibilidade(medicoId, diaDaSemana,horarioInicio, horarioFim);
-        return disponibilidadeRepository.save(disponibilidade);
+    public DisponibilidadeDTO registrarDisponibilidade(Long medicoId, DisponibilidadeDTO disponibilidadeDTO){
+        Disponibilidade disponibilidade = new Disponibilidade(medicoId, disponibilidadeDTO.getDiaDaSemana(),
+        disponibilidadeDTO.getHorarioInicio(), disponibilidadeDTO.getHorarioFim());
+        
+        return Disponibilidade.toDTO(disponibilidadeRepository.save(disponibilidadeDTO));
+        // return disponibilidadeRepository.save(disponibilidade);
     }
 
     public List<Disponibilidade> listarDisponibilidade(Long medicoId){
-        return disponibilidadeRepository.findByMedicoId(medicoId);
+        return  disponibilidadeRepository.findByMedicoId(medicoId);
     }
 
     public void removerDisponibilidade(Long Id){
