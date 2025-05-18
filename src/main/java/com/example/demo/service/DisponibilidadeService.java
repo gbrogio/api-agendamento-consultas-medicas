@@ -22,14 +22,12 @@ public class DisponibilidadeService {
     public DisponibilidadeDTO registrarDisponibilidade(Long medicoId, DisponibilidadeDTO disponibilidadeDTO){
         /*Disponibilidade disponibilidade = disponibilidadeMapper.toEntity(medicoId, disponibilidadeDTO.getDiaDaSemana(),
         disponibilidadeDTO.getHorarioInicio(), disponibilidadeDTO.getHorarioFim());*/
-        
         Disponibilidade disponibilidade = disponibilidadeMapper.toEntity(disponibilidadeDTO);
-
         return disponibilidadeMapper.toDTO(disponibilidadeRepository.save(disponibilidade));
     }
 
-    public List<Disponibilidade> listarDisponibilidade(Long medicoId){
-        return  disponibilidadeRepository.findByMedicoId(medicoId);
+    public List<DisponibilidadeDTO> listarDisponibilidade(Long medicoId){
+        return  disponibilidadeMapper.toDTOList(disponibilidadeRepository.findByMedicoId(medicoId));
     }
 
     public void removerDisponibilidade(Long Id){

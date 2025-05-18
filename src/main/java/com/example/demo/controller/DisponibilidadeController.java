@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,17 +41,12 @@ public class DisponibilidadeController {
     public ResponseEntity<ApiResponse<DisponibilidadeDTO>> registrarDisponibilidade( @PathVariable Long medicoId,
     @RequestBody @Valid DisponibilidadeDTO disponibilidadeDTO){
         try{
-            // Disponibilidade disponibilidade = disponibilidadeService.registrarDisponibilidade( medicoId, request);
-
             DisponibilidadeDTO disponibilidadeSalva = disponibilidadeService.registrarDisponibilidade(medicoId, disponibilidadeDTO);
-    
             ApiResponse<DisponibilidadeDTO> response = new ApiResponse<>(disponibilidadeSalva);
-
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
-            // return ResponseEntity.ok(response);
 
         } catch(IllegalArgumentException e){
-            ErrorResponse errorResponse = new ErrorResponse("Data indisponível ou inválida!", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Erro humano!", e.getMessage());
             ApiResponse<DisponibilidadeDTO> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.badRequest().body(response);
 
@@ -63,16 +59,41 @@ public class DisponibilidadeController {
 
     @Operation(summary = "Lista disponibilidade", description = "Lista dias e horários disponíveis de um médico por Id")
     @GetMapping
-    public ResponseEntity<List<Disponibilidade>> listarDisponibilidades(@PathVariable Long medicoId){
-        List<Disponibilidade> disponibilidades = disponibilidadeService.listarDisponibilidade(medicoId);
-        return ResponseEntity.ok(disponibilidades);
+    public ResponseEntity<ApiResponse<List<DisponibilidadeDTO>>> listarDisponibilidades(@PathVariable Long medicoId){
+        try{
+            List<DisponibilidadeDTO> disponibilidades = disponibilidadeService.listarDisponibilidade(medicoId);
+            ApiResponse<List<DisponibilidadeDTO>> response = new ApiResponse<>(disponibilidades);
+            return ResponseEntity.ok(response);
 
+        }catch(IllegalArgumentException e){
+            ErrorResponse errorResponse = new ErrorResponse("Erro humano!", e.getMessage());
+            ApiResponse<List<DisponibilidadeDTO>> response = new ApiResponse<>(errorResponse);
+            return ResponseEntity.badRequest().body(response);
+
+        } catch(Exception e){
+            ErrorResponse errorResponse = new ErrorResponse("Falha no sistema!", e.getMessage());
+            ApiResponse<List<DisponibilidadeDTO>> response = new ApiResponse<>(errorResponse);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
     
     @Operation
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> removerDisponibilidade (@PathVariable Long Id){
-        disponibilidadeService.removerDisponibilidade(Id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ApiResponse<String>> removerDisponibilidade (@PathVariable Long id){
+        try{
+            disponibilidadeService.removerDisponibilidade(id);
+            ApiResponse<String> response = new ApiResponse<>("Disponibilidade removida!");
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+        } catch(IllegalArgumentException e){
+            ErrorResponse errorResponse = new ErrorResponse("Erro humano!", e.getMessage());
+            ApiResponse<String> response = new ApiResponse<>(errorResponse);
+            return ResponseEntity.badRequest().body(response);
+        } catch(Exception e){
+            ErrorResponse errorResponse = new ErrorResponse("Falha no sistema!", e.getMessage());
+            ApiResponse<String> response = new ApiResponse<>(errorResponse);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+        
     }
 }
