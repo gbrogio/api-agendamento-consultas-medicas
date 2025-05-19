@@ -24,7 +24,7 @@ import lombok.Setter;
 public class Disponibilidade {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long Id; 
+   private Long id; 
 
    @Column(nullable = false)
    private Long medicoId;
@@ -45,15 +45,4 @@ public class Disponibilidade {
     this.horarioFim = horarioFim;
    }
 
-   public String getDiaDaSemana(){
-        return diaDaSemana;
-    }
-
-    public LocalTime getHorarioInicio(){
-        return horarioInicio;
-    }
-
-    public LocalTime getHorarioFim(){
-        return horarioFim;
-    }
 }
