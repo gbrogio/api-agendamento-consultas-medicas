@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Tag(name = "Disponibilidade", description = "Endpoints para verificar disponibilidade de um médico")
 @RestController
-@RequestMapping("/medicos/{medicoId}/disponibilidades")
+@RequestMapping("/api/medicos/{medicoId}/disponibilidades")
 
 public class DisponibilidadeController {
 
