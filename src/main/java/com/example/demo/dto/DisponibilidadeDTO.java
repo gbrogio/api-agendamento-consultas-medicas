@@ -14,9 +14,13 @@ public class DisponibilidadeDTO {
 
     private Long id;
     private Long medicoId;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> homolog
     @NotBlank(message = "É obrigatório informar a data da consulta!")
-    @Size(min = 10, max = 10, message ="O formato da data deve ser dd/mm/aaaa")
+    @Size(min = 10, max = 10, message = "O formato da data deve ser dd/mm/aaaa")
     @Future(message = "O dia da consulta é uma data futura!")
     private String diaDaSemana;
 

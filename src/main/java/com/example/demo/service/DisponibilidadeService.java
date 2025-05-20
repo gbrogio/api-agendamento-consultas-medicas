@@ -15,6 +15,7 @@ public class DisponibilidadeService {
 
     @Autowired
     private DisponibildadeMapper disponibilidadeMapper;
+<<<<<<< HEAD
     
     @Autowired
     private IDisponibilidadeRepository disponibilidadeRepository;
@@ -22,15 +23,35 @@ public class DisponibilidadeService {
     public DisponibilidadeDTO registrarDisponibilidade(Long medicoId, DisponibilidadeDTO disponibilidadeDTO){
         /*Disponibilidade disponibilidade = disponibilidadeMapper.toEntity(medicoId, disponibilidadeDTO.getDiaDaSemana(),
         disponibilidadeDTO.getHorarioInicio(), disponibilidadeDTO.getHorarioFim());*/
+=======
+
+    @Autowired
+    private IDisponibilidadeRepository disponibilidadeRepository;
+
+    public DisponibilidadeDTO registrarDisponibilidade(Long medicoId, DisponibilidadeDTO disponibilidadeDTO) {
+        /*
+         * Disponibilidade disponibilidade = disponibilidadeMapper.toEntity(medicoId,
+         * disponibilidadeDTO.getDiaDaSemana(), disponibilidadeDTO.getHorarioInicio(),
+         * disponibilidadeDTO.getHorarioFim());
+         */
+>>>>>>> homolog
         Disponibilidade disponibilidade = disponibilidadeMapper.toEntity(disponibilidadeDTO);
         return disponibilidadeMapper.toDTO(disponibilidadeRepository.save(disponibilidade));
     }
 
+<<<<<<< HEAD
     public List<DisponibilidadeDTO> listarDisponibilidade(Long medicoId){
         return  disponibilidadeMapper.toDTOList(disponibilidadeRepository.findByMedicoId(medicoId));
     }
 
     public void removerDisponibilidade(Long Id){
+=======
+    public List<DisponibilidadeDTO> listarDisponibilidade(Long medicoId) {
+        return disponibilidadeMapper.toDTOList(disponibilidadeRepository.findByMedicoId(medicoId));
+    }
+
+    public void removerDisponibilidade(Long Id) {
+>>>>>>> homolog
         disponibilidadeRepository.deleteById(Id);
     }
 }
