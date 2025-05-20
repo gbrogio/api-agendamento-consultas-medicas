@@ -17,8 +17,10 @@ import lombok.Setter;
 @Data
 @Entity
 @Table(name = "usuarios")
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Usuario {
 
     @Id
@@ -52,4 +54,3 @@ public class Usuario {
         this.telefone = telefone;
     }
 }
-

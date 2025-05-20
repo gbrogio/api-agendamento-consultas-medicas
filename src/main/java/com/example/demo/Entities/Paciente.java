@@ -16,8 +16,10 @@ import lombok.Setter;
 @Data
 @Entity
 @Table(name = "Paciente")
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Paciente {
 
     @Id
@@ -39,5 +41,4 @@ public class Paciente {
     @Column(nullable = false)
     private boolean ativo = true;
 
-    
 }

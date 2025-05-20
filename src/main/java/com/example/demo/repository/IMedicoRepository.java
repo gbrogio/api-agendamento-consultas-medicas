@@ -8,8 +8,6 @@ import com.example.demo.Entities.Medico;
 
 @Repository
 public interface IMedicoRepository extends JpaRepository<Medico, Long> {
-    Optional<Medico> findById(Long id);
-
     List<Medico> findByNome(String nome);
 
     Optional<Medico> findByCrm(String crm);

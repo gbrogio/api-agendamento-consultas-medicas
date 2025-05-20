@@ -19,7 +19,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Especialidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

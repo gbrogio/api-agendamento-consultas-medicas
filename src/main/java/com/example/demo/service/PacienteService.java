@@ -18,7 +18,6 @@ public class PacienteService {
 
     @Autowired
     private PacienteMapper pacienteMapper;
-    
 
     public List<PacienteDTO> listarTodos() {
         return pacienteMapper.toDTOList(pacienteRepository.findAll());

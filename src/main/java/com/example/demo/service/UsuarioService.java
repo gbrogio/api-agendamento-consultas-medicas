@@ -18,7 +18,6 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioMapper usuarioMapper;
-    
 
     public List<UsuarioDTO> listarTodos() {
         return usuarioMapper.toDTOList(usuarioRepository.findAll());
@@ -37,4 +36,3 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 }
-

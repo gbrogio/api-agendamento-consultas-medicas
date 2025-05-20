@@ -14,21 +14,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@Data 
+@Data
 @Entity
 @Table(name = "Disponibildade")
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class Disponibilidade {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id; 
+   private Long id;
 
    @Column(nullable = false)
    private Long medicoId;
-   
+
    @Column(nullable = false)
    private String diaDaSemana;
 

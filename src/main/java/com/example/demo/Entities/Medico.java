@@ -33,19 +33,13 @@ public class Medico {
     @Column(nullable = false)
     private String nome;
 
-    /*@Column(nullable = false)
-    private LocalDate dataNascimento;*/
+    /*
+     * @Column(nullable = false) private LocalDate dataNascimento;
+     */
 
     @Column(nullable = false, unique = true)
     private String crm;
 
     @Column(name = "especialidade_id", nullable = false)
     private Long especialidadeId;
-
-    public Medico(String nome, /*LocalDate dataNascimento,*/ String crm, Long especialidade) {
-        this.nome = nome;
-        //this.dataNascimento = dataNascimento;
-        this.crm = crm;
-        this.especialidadeId = especialidade;
-    }
 }

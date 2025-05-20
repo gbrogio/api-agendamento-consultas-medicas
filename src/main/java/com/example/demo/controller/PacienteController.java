@@ -36,8 +36,7 @@ public class PacienteController {
     @GetMapping("/{id}")
     public ResponseEntity<PacienteDTO> buscarPorId(@PathVariable Long id) {
         Optional<PacienteDTO> pacienteDTO = pacienteService.buscarPorId(id);
-        return pacienteDTO.map(ResponseEntity::ok)
-                         .orElseGet(() -> ResponseEntity.notFound().build());
+        return pacienteDTO.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Operation(summary = "Cria um novo Paciente", description = "Cadastra um novo paciente no sistema")
@@ -46,7 +45,7 @@ public class PacienteController {
         try {
             // Tenta salvar o paciente
             PacienteDTO savedPaciente = pacienteService.salvar(pacienteDTO);
-            
+
             // Retorna sucesso com o PacienteDTO salvo
             ApiResponse<PacienteDTO> response = new ApiResponse<>(savedPaciente);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);

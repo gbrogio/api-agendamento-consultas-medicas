@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 public class UsuarioDTO {
-    
+
     private Long id;
 
     @NotBlank(message = "O nome é obrigatório")

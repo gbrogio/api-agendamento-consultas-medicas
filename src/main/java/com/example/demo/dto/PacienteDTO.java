@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class PacienteDTO {
-    
+
     private Long id;
     private boolean ativo = true;
 

@@ -9,9 +9,9 @@ import com.example.demo.dto.PacienteDTO;
 
 @Mapper(componentModel = "spring")
 public interface PacienteMapper {
-    PacienteDTO toDTO(Paciente Paciente);
+    PacienteDTO toDTO(Paciente paciente);
 
-    Paciente toEntity(PacienteDTO PacienteDTO);
+    Paciente toEntity(PacienteDTO pacienteDTO);
 
     List<PacienteDTO> toDTOList(List<Paciente> pacientes);
 }
