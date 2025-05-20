@@ -21,15 +21,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Disponibilidade {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-<<<<<<< HEAD
-   private Long id; 
-=======
    private Long id;
->>>>>>> homolog
 
    @Column(nullable = false)
    private Long medicoId;
