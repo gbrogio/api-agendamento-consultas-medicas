@@ -1,7 +1,5 @@
 package com.example.demo.Entities;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,14 +12,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+//criando atributos da classe Paciente
 @Data
 @Entity
-@Table(name = "usuarios")
+@Table(name = "Paciente")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario {
+public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,20 +36,9 @@ public class Usuario {
     private String email;
 
     @Column(nullable = false)
-    private String senha;
-
-    @Column(nullable = false)
-    private LocalDate dataNascimento;
-
-    @Column(nullable = false)
     private String telefone;
 
-    public Usuario(String nome, String cpf, String email, String senha, LocalDate dataNascimento, String telefone) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.senha = senha;
-        this.dataNascimento = dataNascimento;
-        this.telefone = telefone;
-    }
+    @Column(nullable = false)
+    private boolean ativo = true;
+
 }
