@@ -14,7 +14,7 @@ Permitir que pacientes agendem consultas médicas, que médicos visualizem suas 
 - Spring Boot
 - Spring Data JPA
 - Hibernate
-- Banco de Dados (ex: H2, PostgreSQL)
+- Banco de Dados (PostgreSQL)
 - Maven
 
 ---
@@ -32,7 +32,6 @@ Permitir que pacientes agendem consultas médicas, que médicos visualizem suas 
 ## 🔐 Regras de Negócio
 
 - Agendamento só é permitido:
-  - Dentro do horário comercial (ex: 09:00 às 17:00).
   - Se o médico estiver disponível naquele horário.
   - Com data/hora futura.
 - Cancelamentos só são aceitos com **no mínimo 24 horas de antecedência**.
@@ -97,13 +96,24 @@ Permitir que pacientes agendem consultas médicas, que médicos visualizem suas 
   cd api-agendamento-consultas-medicas
 ```
 
-3. Compile e rode o projeto com o Maven:
+3. (OPCIONAL) Caso tenha docker rode o banco de dados:
+```
+  docker-compose up
+```
+
+ou crie um banco de dados PostgreSQL com as seguintes propriedades:
+USUÁRIO: postgres
+SENHA: password
+NOME DO BANCO: agenconsul
+
+4. Compile e rode o projeto com o Maven:
 
 ```bash
   mvn spring-boot:run
 ```
 
-4. Acesse o Swagger em:
+5. Acesse o Swagger em:
+
 ```bash
   http://localhost:8080/docs
 ```
@@ -112,5 +122,5 @@ Permitir que pacientes agendem consultas médicas, que médicos visualizem suas 
 
 **Disciplina:** Programação Orientada a Objetos em Java\
 **Projeto Avaliativo:** API para Agendamento de Consultas Médicas\
-**Alunos:** Antônio Neto, Guilherme Brogio, Lucas Gabriel, Matheus Guilherme\
+**Alunos:** Antônio Neto, Guilherme Brogio, Lucas Gabriel, Matheus Guilherme, Leonardo Ribeiro\
 **Professor:** Fabrício

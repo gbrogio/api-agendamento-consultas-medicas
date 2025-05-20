@@ -16,18 +16,18 @@ public class ConsultaDTO {
     @NotNull(message = "O ID do paciente é obrigatório")
     private Long pacienteId;
 
+    private String nomePaciente;
+
     @NotNull(message = "O ID do médico é obrigatório")
     private Long medicoId;
 
+    private String nomeMedico;
+
     @NotNull(message = "A data e hora da consulta são obrigatórias")
-    @Future(message = "A data da consulta deve ser uma data futura")
+    @Future(message = "A data e hora da consulta devem ser futuras")
     private LocalDateTime dataHora;
 
     private String status;
 
     private String observacoes;
-
-    // Campos adicionais para exibição
-    private String nomePaciente;
-    private String nomeMedico;
 }

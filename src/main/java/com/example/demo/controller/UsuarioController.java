@@ -36,8 +36,7 @@ public class UsuarioController {
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioDTO> buscarPorId(@PathVariable Long id) {
         Optional<UsuarioDTO> usuarioDTO = usuarioService.buscarPorId(id);
-        return usuarioDTO.map(ResponseEntity::ok)
-                         .orElseGet(() -> ResponseEntity.notFound().build());
+        return usuarioDTO.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Operation(summary = "Cria um novo usuário", description = "Cadastra um novo usuário no sistema")
@@ -46,7 +45,7 @@ public class UsuarioController {
         try {
             // Tenta salvar o usuário
             UsuarioDTO savedUsuario = usuarioService.salvar(usuarioDTO);
-            
+
             // Retorna sucesso com o UsuarioDTO salvo
             ApiResponse<UsuarioDTO> response = new ApiResponse<>(savedUsuario);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
