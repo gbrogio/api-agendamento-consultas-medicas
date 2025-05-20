@@ -46,6 +46,7 @@ public class DisponibilidadeController {
             ErrorResponse errorResponse = new ErrorResponse("Erro humano!", e.getMessage());
             ApiResponse<DisponibilidadeDTO> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.badRequest().body(response);
+
         } catch (Exception e) {
             ErrorResponse errorResponse = new ErrorResponse("Falha no sistema!", e.getMessage());
             ApiResponse<DisponibilidadeDTO> response = new ApiResponse<>(errorResponse);
@@ -60,10 +61,12 @@ public class DisponibilidadeController {
             List<DisponibilidadeDTO> disponibilidades = disponibilidadeService.listarDisponibilidade(medicoId);
             ApiResponse<List<DisponibilidadeDTO>> response = new ApiResponse<>(disponibilidades);
             return ResponseEntity.ok(response);
+
         } catch (IllegalArgumentException e) {
             ErrorResponse errorResponse = new ErrorResponse("Erro humano!", e.getMessage());
             ApiResponse<List<DisponibilidadeDTO>> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.badRequest().body(response);
+
         } catch (Exception e) {
             ErrorResponse errorResponse = new ErrorResponse("Falha no sistema!", e.getMessage());
             ApiResponse<List<DisponibilidadeDTO>> response = new ApiResponse<>(errorResponse);
@@ -78,6 +81,7 @@ public class DisponibilidadeController {
             disponibilidadeService.removerDisponibilidade(id);
             ApiResponse<String> response = new ApiResponse<>("Disponibilidade removida!");
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
         } catch (IllegalArgumentException e) {
             ErrorResponse errorResponse = new ErrorResponse("Erro humano!", e.getMessage());
             ApiResponse<String> response = new ApiResponse<>(errorResponse);
@@ -87,5 +91,6 @@ public class DisponibilidadeController {
             ApiResponse<String> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
+
     }
 }
