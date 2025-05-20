@@ -5,8 +5,16 @@ import java.time.LocalTime;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
 public class DisponibilidadeDTO {
+
+    private Long id;
+    private Long medicoId;
+    
     @NotBlank(message = "É obrigatório informar a data da consulta!")
     @Size(min = 10, max = 10, message ="O formato da data deve ser dd/mm/aaaa")
     @Future(message = "O dia da consulta é uma data futura!")
