@@ -1,10 +1,10 @@
 package com.example.demo.dto;
 
-//import java.time.LocalDate;
+import jakarta.validation.constraints.Min;
+
 
 import jakarta.validation.constraints.NotBlank;
-//import jakarta.validation.constraints.NotNull;
-//import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +26,8 @@ public class MedicoDTO {
     @Size(min = 5, max = 10, message = "O CRM deve ter entre 5 e 10 caracteres")
     private String crm;
 
-    @NotBlank(message = "A especialidade é obrigatória")
-    @Size(min = 3, max = 50, message = "A especialidade deve ter entre 3 e 50 caracteres")
-    private String especialidadeId;
+    @NotNull(message = "O ID da categoria é obrigatório.")
+    @Min(value = 1, message = "O ID da categoria deve ser maior que zero.")
+    private Long especialidadeId;
+
 }
