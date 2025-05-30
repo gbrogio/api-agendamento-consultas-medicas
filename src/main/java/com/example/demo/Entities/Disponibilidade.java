@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @Entity
@@ -33,9 +34,11 @@ public class Disponibilidade {
    private Integer diaDaSemana;
 
    @Column(nullable = false)
+   @DateTimeFormat(pattern = "HH:mm:ss")
    private LocalTime horarioInicio;
 
    @Column(nullable = false)
+   @DateTimeFormat(pattern = "HH:mm:ss")
    private LocalTime horarioFim;
 
 }
