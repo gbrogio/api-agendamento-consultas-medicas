@@ -68,12 +68,12 @@ public class ConsultaService {
         // e 18h");
         // }
 
-        String diaSemana = dataHora.getDayOfWeek().toString();
+        int diaSemana = dataHora.getDayOfWeek().getValue();
         List<Disponibilidade> disponibilidades = disponibilidadeRepository.findByMedicoId(medico.getId());
 
         boolean horarioDisponivel = false;
         for (Disponibilidade disp : disponibilidades) {
-            if (disp.getDiaDaSemana().equalsIgnoreCase(diaSemana) && !horario.isBefore(disp.getHorarioInicio())
+            if (disp.getDiaDaSemana() == (diaSemana) && !horario.isBefore(disp.getHorarioInicio())
                     && !horario.isAfter(disp.getHorarioFim())) {
                 horarioDisponivel = true;
                 break;

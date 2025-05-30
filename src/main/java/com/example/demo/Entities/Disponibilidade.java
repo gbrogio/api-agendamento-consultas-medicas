@@ -21,7 +21,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Disponibilidade {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +30,7 @@ public class Disponibilidade {
    private Long medicoId;
 
    @Column(nullable = false)
-   private String diaDaSemana;
+   private Integer diaDaSemana;
 
    @Column(nullable = false)
    private LocalTime horarioInicio;
