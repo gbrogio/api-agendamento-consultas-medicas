@@ -134,7 +134,7 @@ public class PacienteController {
     }
 
     @Operation(summary = "reativar um paciente", description = "reativar um paciente do sistema pelo ID")
-    @PostMapping("/reativar/{id}")
+    @PutMapping("/reativar/{id}")
     public ResponseEntity<ApiResponse<PacienteDTO>> reativarPaciente(@PathVariable Long id) {
         try {
             PacienteDTO pacienteDto = pacienteService.reativar(id);

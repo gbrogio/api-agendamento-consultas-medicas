@@ -8,7 +8,6 @@ import com.example.demo.service.Utils.ApiResponse;
 import com.example.demo.service.Utils.ErrorResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
@@ -24,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 // Aqui você pode adicionar os métodos para gerenciar médicos, como listar, buscar por ID, 
 //criar, atualizar e excluir médicos.
@@ -156,7 +156,7 @@ public class MedicoController {
     }
 
     @Operation(summary = "Reativar um médico", description = "Remove um médico do sistema pelo ID")
-    @DeleteMapping("/reativar/{id}")
+    @PutMapping("/reativar/{id}")
     public ResponseEntity<ApiResponse<MedicoDTO>> reativarMedico(@PathVariable Long id) {
         try {
             // tenta reativar o medico

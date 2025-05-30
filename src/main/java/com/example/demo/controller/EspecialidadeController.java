@@ -8,7 +8,6 @@ import com.example.demo.service.Utils.ApiResponse;
 import com.example.demo.service.Utils.ErrorResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
@@ -24,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 // Aqui você pode adicionar os métodos para gerenciar especialidades, como listar, buscar por ID, 
 //criar, atualizar e excluir especialidades.
@@ -53,6 +53,7 @@ public class EspecialidadeController {
             return ResponseEntity.badRequest().body(response);
 
         } catch (Exception e) {
+            System.out.println(especialidadeDTO.toString());
             // cria um erro generico
             ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage());
             ApiResponse<EspecialidadeDTO> response = new ApiResponse<>(errorResponse);
