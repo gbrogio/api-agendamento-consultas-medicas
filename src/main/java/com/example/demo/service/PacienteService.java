@@ -24,7 +24,8 @@ public class PacienteService {
     }
 
     public Optional<PacienteDTO> buscarPorId(Long id) {
-        return pacienteRepository.findById(id).map(pacienteMapper::toDTO);
+        Optional<PacienteDTO> pacienteDTO = pacienteRepository.findById(id).map(pacienteMapper::toDTO);
+        return pacienteDTO;
     }
 
     public PacienteDTO salvar(PacienteDTO pacienteDTO) {
@@ -32,7 +33,37 @@ public class PacienteService {
         return pacienteMapper.toDTO(pacienteRepository.save(paciente));
     }
 
-    public void deletar(Long id) {
-        pacienteRepository.deleteById(id);
+    public PacienteDTO atualizar(long id, PacienteDTO pacienteDTO) {
+        return pacienteRepository.findById(id)
+                .map(paciente -> {
+                    paciente.setNome(pacienteDTO.getNome());
+                    paciente.setCpf(pacienteDTO.getCpf());
+                    paciente.setEmail(pacienteDTO.getEmail());
+                    paciente.setEmail(pacienteDTO.getTelefone());
+                    pacienteRepository.save(paciente);
+                    return pacienteMapper.toDTO(paciente);
+                })
+                .orElseThrow(() -> new IllegalArgumentException("Paciente não encontrado com o ID: " + id));
     }
+
+    public PacienteDTO inativar(Long id) {
+        return pacienteRepository.findById(id)
+                .map(paciente -> {
+                    paciente.setAtivo(false);
+                    pacienteRepository.save(paciente);
+                    return pacienteMapper.toDTO(paciente);
+                })
+                .orElseThrow(() -> new IllegalArgumentException("Paciente não encontrado com o ID: " + id));
+    }
+
+    public PacienteDTO reativar(Long id) {
+        return pacienteRepository.findById(id)
+                .map(paciente -> {
+                    paciente.setAtivo(true);
+                    pacienteRepository.save(paciente);
+                    return pacienteMapper.toDTO(paciente);
+                })
+                .orElseThrow(() -> new IllegalArgumentException("Paciente não encontrado com o ID: " + id));
+    }
+
 }

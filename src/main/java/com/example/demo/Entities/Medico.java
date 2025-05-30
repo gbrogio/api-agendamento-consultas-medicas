@@ -1,6 +1,5 @@
 package com.example.demo.Entities;
 
-//import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,13 +32,13 @@ public class Medico {
     @Column(nullable = false)
     private String nome;
 
-    /*
-     * @Column(nullable = false) private LocalDate dataNascimento;
-     */
-
     @Column(nullable = false, unique = true)
     private String crm;
 
     @Column(name = "especialidade_id", nullable = false)
     private Long especialidadeId;
+
+    @Column(nullable = false)
+    private boolean ativo = true;
+
 }
