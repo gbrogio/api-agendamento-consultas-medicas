@@ -31,7 +31,7 @@ public class Disponibilidade {
    private Long medicoId;
 
    @Column(nullable = false)
-   private String diaDaSemana;
+   private int diaDaSemana;
 
    @Column(nullable = false)
    private LocalTime horarioInicio;

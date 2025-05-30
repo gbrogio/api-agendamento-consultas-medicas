@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Tag(name = "Paciente", description = "Endpoints para gerenciamento de Paciente")
 @RestController
-@RequestMapping("api/paciente")
+@RequestMapping("/api/paciente")
 public class PacienteController {
 
     @Autowired

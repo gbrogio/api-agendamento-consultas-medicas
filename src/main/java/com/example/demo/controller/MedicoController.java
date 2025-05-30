@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Tag(name = "Medico", description = "Endpoints para gerenciamento de Médico")
 @RestController
-@RequestMapping("api/medico")
+@RequestMapping("/api/medico")
 public class MedicoController {
 
     @Autowired
