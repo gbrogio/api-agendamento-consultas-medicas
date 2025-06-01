@@ -43,12 +43,12 @@ public class DisponibilidadeController {
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
         } catch (IllegalArgumentException e) {
-            ErrorResponse errorResponse = new ErrorResponse("Erro humano!", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage(), null);
             ApiResponse<DisponibilidadeDTO> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.badRequest().body(response);
 
         } catch (Exception e) {
-            ErrorResponse errorResponse = new ErrorResponse("Falha no sistema!", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage(), null);
             ApiResponse<DisponibilidadeDTO> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
@@ -63,12 +63,12 @@ public class DisponibilidadeController {
             return ResponseEntity.ok(response);
 
         } catch (IllegalArgumentException e) {
-            ErrorResponse errorResponse = new ErrorResponse("Erro humano!", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage(), null);
             ApiResponse<List<DisponibilidadeDTO>> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.badRequest().body(response);
 
         } catch (Exception e) {
-            ErrorResponse errorResponse = new ErrorResponse("Falha no sistema!", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage(), null);
             ApiResponse<List<DisponibilidadeDTO>> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
@@ -83,11 +83,11 @@ public class DisponibilidadeController {
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
         } catch (IllegalArgumentException e) {
-            ErrorResponse errorResponse = new ErrorResponse("Erro humano!", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage(), null);
             ApiResponse<String> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.badRequest().body(response);
         } catch (Exception e) {
-            ErrorResponse errorResponse = new ErrorResponse("Falha no sistema!", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage(), null);
             ApiResponse<String> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }

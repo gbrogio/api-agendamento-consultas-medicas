@@ -43,13 +43,11 @@ public class ConsultaController {
             ApiResponse<ConsultaDTO> response = new ApiResponse<>(consultaSalva);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (IllegalArgumentException e) {
-            // Erro de validação ou conflito de negócio
-            ErrorResponse error = new ErrorResponse("Erro de validação", e.getMessage());
+            ErrorResponse error = new ErrorResponse("Argumento inválido", e.getMessage(), null);
             ApiResponse<ConsultaDTO> response = new ApiResponse<>(error);
             return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
         } catch (Exception e) {
-            // Erro interno
-            ErrorResponse error = new ErrorResponse("Erro interno", e.getMessage());
+            ErrorResponse error = new ErrorResponse("Erro interno", e.getMessage(), null);
             ApiResponse<ConsultaDTO> response = new ApiResponse<>(error);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
@@ -67,11 +65,11 @@ public class ConsultaController {
             ApiResponse<List<ConsultaDTO>> response = new ApiResponse<>(consultas);
             return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
-            ErrorResponse error = new ErrorResponse("Erro de validação", e.getMessage());
+            ErrorResponse error = new ErrorResponse("Argumento inválido", e.getMessage(), null);
             ApiResponse<List<ConsultaDTO>> response = new ApiResponse<>(error);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         } catch (Exception e) {
-            ErrorResponse error = new ErrorResponse("Erro interno", e.getMessage());
+            ErrorResponse error = new ErrorResponse("Erro interno", e.getMessage(), null);
             ApiResponse<List<ConsultaDTO>> response = new ApiResponse<>(error);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
@@ -86,7 +84,7 @@ public class ConsultaController {
             ApiResponse<ConsultaDTO> response = new ApiResponse<>(consultaOpt.get());
             return ResponseEntity.ok(response);
         } else {
-            ErrorResponse error = new ErrorResponse("Não encontrada", "Consulta não encontrada");
+            ErrorResponse error = new ErrorResponse("Não encontrada", "Consulta não encontrada", null);
             ApiResponse<ConsultaDTO> response = new ApiResponse<>(error);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
@@ -102,7 +100,7 @@ public class ConsultaController {
             ApiResponse<ConsultaDTO> response = new ApiResponse<>(consultaAtualizada);
             return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
-            ErrorResponse error = new ErrorResponse("Erro de validação", e.getMessage());
+            ErrorResponse error = new ErrorResponse("Argumento inválido", e.getMessage(), null);
             ApiResponse<ConsultaDTO> response = new ApiResponse<>(error);
 
             // Se a consulta não foi encontrada, retorna 404, senão retorna 400 para status
@@ -112,7 +110,7 @@ public class ConsultaController {
 
             return ResponseEntity.status(httpStatus).body(response);
         } catch (Exception e) {
-            ErrorResponse error = new ErrorResponse("Erro interno", e.getMessage());
+            ErrorResponse error = new ErrorResponse("Erro interno", e.getMessage(), null);
             ApiResponse<ConsultaDTO> response = new ApiResponse<>(error);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
@@ -125,7 +123,7 @@ public class ConsultaController {
             consultaService.cancelar(id);
             return ResponseEntity.noContent().build();
         } catch (IllegalArgumentException e) {
-            ErrorResponse error = new ErrorResponse("Erro de validação", e.getMessage());
+            ErrorResponse error = new ErrorResponse("Argumento inválido", e.getMessage(), null);
             ApiResponse<Void> response = new ApiResponse<>(error);
 
             // Determinar o status HTTP apropriado baseado na mensagem de erro
@@ -140,7 +138,7 @@ public class ConsultaController {
 
             return ResponseEntity.status(httpStatus).body(response);
         } catch (Exception e) {
-            ErrorResponse error = new ErrorResponse("Erro interno", e.getMessage());
+            ErrorResponse error = new ErrorResponse("Erro interno", e.getMessage(), null);
             ApiResponse<Void> response = new ApiResponse<>(error);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }

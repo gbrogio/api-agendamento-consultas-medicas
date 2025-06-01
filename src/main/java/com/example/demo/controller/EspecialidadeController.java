@@ -48,14 +48,14 @@ public class EspecialidadeController {
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (IllegalArgumentException e) {
             // da um erro com a mensagem especifica
-            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage(), null);
             ApiResponse<EspecialidadeDTO> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.badRequest().body(response);
 
         } catch (Exception e) {
             System.out.println(especialidadeDTO.toString());
             // cria um erro generico
-            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage(), null);
             ApiResponse<EspecialidadeDTO> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
@@ -74,13 +74,13 @@ public class EspecialidadeController {
             return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
             // da um erro com a mensagem especifica
-            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage(), null);
             ApiResponse<EspecialidadeDTO> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.badRequest().body(response);
 
         } catch (Exception e) {
             // cria um erro generico
-            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage(), null);
             ApiResponse<EspecialidadeDTO> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
@@ -98,13 +98,13 @@ public class EspecialidadeController {
 
         } catch (IllegalArgumentException e) {
             // da um erro com a mensagem especifica
-            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage(), null);
             ApiResponse<List<EspecialidadeDTO>> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.badRequest().body(response);
 
         } catch (Exception e) {
             // cria um erro generico
-            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage(), null);
             ApiResponse<List<EspecialidadeDTO>> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
@@ -121,13 +121,13 @@ public class EspecialidadeController {
 
         } catch (IllegalArgumentException e) {
             // da um erro com a mensagem especifica
-            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage(), null);
             ApiResponse<Optional<EspecialidadeDTO>> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.badRequest().body(response);
 
         } catch (Exception e) {
             // cria um erro generico
-            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage(), null);
             ApiResponse<Optional<EspecialidadeDTO>> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
@@ -144,13 +144,13 @@ public class EspecialidadeController {
             return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
             // da um erro com a mensagem especifica
-            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Argumento inválido", e.getMessage(), null);
             ApiResponse<EspecialidadeDTO> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.badRequest().body(response);
 
         } catch (Exception e) {
             // cria um erro generico
-            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage());
+            ErrorResponse errorResponse = new ErrorResponse("Erro interno", e.getMessage(), null);
             ApiResponse<EspecialidadeDTO> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
