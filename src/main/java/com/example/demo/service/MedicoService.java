@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Entities.Especialidade;
 import com.example.demo.Entities.Medico;
 import com.example.demo.dto.MedicoDTO;
 import com.example.demo.mapper.MedicoMapper;
@@ -40,7 +41,9 @@ public class MedicoService {
                 .map(medico -> {
                     medico.setNome(medicoDTO.getNome());
                     medico.setCrm(medicoDTO.getCrm());
-                    medico.setEspecialidadeId(medicoDTO.getEspecialidadeId());
+                    Especialidade especialidade = new Especialidade();
+                    especialidade.setId(medicoDTO.getEspecialidadeId());
+                    medico.setEspecialidade(especialidade);
                     medicoRepository.save(medico);
                     return medicoMapper.toDTO(medico);
                 })

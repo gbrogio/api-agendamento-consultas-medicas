@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +18,7 @@ import lombok.Setter;
 
 @Data
 @Entity
-@Table(name = "Disponibildade")
+@Table(name = "Disponibilidade")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,8 +28,10 @@ public class Disponibilidade {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @Column(nullable = false)
-   private Long medicoId;
+   // Removendo o campo medicoId e substituindo pela relação
+   @ManyToOne
+   @JoinColumn(name = "medico_id", nullable = false)
+   private Medico medico;
 
    @Column(nullable = false)
    private Integer diaDaSemana;
@@ -37,5 +41,4 @@ public class Disponibilidade {
 
    @Column(nullable = false)
    private LocalTime horarioFim;
-
 }

@@ -11,6 +11,7 @@ import com.example.demo.dto.EspecialidadeDTO;
 public interface EspecialidadeMapper {
     EspecialidadeDTO toDTO(Especialidade especialidade);
 
+    @org.mapstruct.Mapping(target = "medicos", ignore = true)
     Especialidade toEntity(EspecialidadeDTO especialidadeDTO);
 
     List<EspecialidadeDTO> toDTOList(List<Especialidade> especialidades);

@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.Entities.Disponibilidade;
 import com.example.demo.dto.DisponibilidadeDTO;
-import com.example.demo.mapper.DisponibildadeMapper;
+import com.example.demo.mapper.DisponibilidadeMapper;
 import com.example.demo.repository.IDisponibilidadeRepository;
 
 @Service
 public class DisponibilidadeService {
 
     @Autowired
-    private DisponibildadeMapper disponibilidadeMapper;
+    private DisponibilidadeMapper disponibilidadeMapper;
 
     @Autowired
     private IDisponibilidadeRepository disponibilidadeRepository;
