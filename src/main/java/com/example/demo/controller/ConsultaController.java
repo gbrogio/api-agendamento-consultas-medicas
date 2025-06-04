@@ -24,6 +24,7 @@ import com.example.demo.service.Utils.ApiResponse;
 import com.example.demo.service.Utils.ErrorResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
@@ -55,10 +56,12 @@ public class ConsultaController {
 
     @Operation(summary = "Listar consultas", description = "Lista todas as consultas com filtros opcionais")
     @GetMapping
-    public ResponseEntity<ApiResponse<List<ConsultaDTO>>> listar(@RequestParam(required = false) Long medicoId,
-            @RequestParam(required = false) Long pacienteId, @RequestParam(required = false) String status,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFim) {
+    public ResponseEntity<ApiResponse<List<ConsultaDTO>>> listar(
+            @RequestParam(name = "medico-id", required = false) @Parameter(description = "ID do médico para filtrar consultas", example = "1") Long medicoId,
+            @RequestParam(name = "paciente-id", required = false) @Parameter(description = "ID do paciente para filtrar consultas", example = "1") Long pacienteId,
+            @RequestParam(required = false) @Parameter(description = "Status da consulta. Ex.: agendada, confirmada, cancelada", example = "CONFIRMADA") String status,
+            @RequestParam(name = "data-inicio", required = false) @Parameter(description = "Data e hora de início para filtrar consultas", example = "2023-10-01T10:00:00") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
+            @RequestParam(name = "data-fim", required = false) @Parameter(description = "Data e hora de fim para filtrar consultas", example = "2023-10-31T18:00:00") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFim) {
 
         try {
             List<ConsultaDTO> consultas = consultaService.listar(medicoId, pacienteId, status, dataInicio, dataFim);

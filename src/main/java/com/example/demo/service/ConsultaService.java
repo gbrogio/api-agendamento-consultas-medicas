@@ -118,7 +118,8 @@ public class ConsultaService {
             throw new IllegalArgumentException("Data de início não pode ser posterior à data de fim");
         }
 
-        List<Consulta> consultas = consultaRepository.findAllUsing(medicoId, pacienteId, status, dataInicio, dataFim);
+        List<Consulta> consultas = consultaRepository.findAllUsing(medicoId, pacienteId, status,
+                dataInicio != null ? dataInicio.toString() : null, dataFim != null ? dataFim.toString() : null);
 
         return consultaMapper.toDTOList(consultas);
     }

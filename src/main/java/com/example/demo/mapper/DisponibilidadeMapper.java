@@ -3,11 +3,10 @@ package com.example.demo.mapper;
 import java.util.List;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import com.example.demo.Entities.Disponibilidade;
 import com.example.demo.dto.DisponibilidadeDTO;
-
-import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface DisponibilidadeMapper {

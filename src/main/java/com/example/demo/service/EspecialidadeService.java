@@ -42,13 +42,11 @@ public class EspecialidadeService {
     }
 
     public EspecialidadeDTO atualizar(Long id, EspecialidadeDTO especialidadeDTO) {
-        return especialidadeRepository.findById(id)
-                .map(especialidade -> {
-                    especialidade.setNome(especialidadeDTO.getNome());
-                    especialidadeRepository.save(especialidade);
-                    return especialidadeMapper.toDTO(especialidade);
-                })
-                .orElseThrow(() -> new IllegalArgumentException("Especialidade não encontrada com o ID: " + id));
+        return especialidadeRepository.findById(id).map(especialidade -> {
+            especialidade.setNome(especialidadeDTO.getNome());
+            especialidadeRepository.save(especialidade);
+            return especialidadeMapper.toDTO(especialidade);
+        }).orElseThrow(() -> new IllegalArgumentException("Especialidade não encontrada com o ID: " + id));
     }
 
     public EspecialidadeDTO deletar(Long id) {

@@ -4,6 +4,7 @@ import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -15,7 +16,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DisponibilidadeDTO {
 
+    @Hidden
     private Long id;
+    @Hidden
     private Long medicoId;
 
     @NotNull(message = "É obrigatório informar o dia da semana")

@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -11,7 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PacienteDTO {
 
+    @Hidden
     private Long id;
+
+    @Hidden
     private boolean ativo = true;
 
     @NotBlank(message = "O nome é obrigatório")

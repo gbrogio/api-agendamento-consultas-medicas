@@ -37,36 +37,30 @@ public class MedicoService {
     }
 
     public MedicoDTO atualizar(Long id, MedicoDTO medicoDTO) {
-        return medicoRepository.findById(id)
-                .map(medico -> {
-                    medico.setNome(medicoDTO.getNome());
-                    medico.setCrm(medicoDTO.getCrm());
-                    Especialidade especialidade = new Especialidade();
-                    especialidade.setId(medicoDTO.getEspecialidadeId());
-                    medico.setEspecialidade(especialidade);
-                    medicoRepository.save(medico);
-                    return medicoMapper.toDTO(medico);
-                })
-                .orElseThrow(() -> new IllegalArgumentException("Médico não encontrado com o ID: " + id));
+        return medicoRepository.findById(id).map(medico -> {
+            medico.setNome(medicoDTO.getNome());
+            medico.setCrm(medicoDTO.getCrm());
+            Especialidade especialidade = new Especialidade();
+            especialidade.setId(medicoDTO.getEspecialidadeId());
+            medico.setEspecialidade(especialidade);
+            medicoRepository.save(medico);
+            return medicoMapper.toDTO(medico);
+        }).orElseThrow(() -> new IllegalArgumentException("Médico não encontrado com o ID: " + id));
     }
 
     public MedicoDTO deletar(Long id) {
-        return medicoRepository.findById(id)
-                .map(medico -> {
-                    medico.setAtivo(false);
-                    medicoRepository.save(medico);
-                    return medicoMapper.toDTO(medico);
-                })
-                .orElseThrow(() -> new IllegalArgumentException("Médico não encontrado com o ID: " + id));
+        return medicoRepository.findById(id).map(medico -> {
+            medico.setAtivo(false);
+            medicoRepository.save(medico);
+            return medicoMapper.toDTO(medico);
+        }).orElseThrow(() -> new IllegalArgumentException("Médico não encontrado com o ID: " + id));
     }
 
     public MedicoDTO reativar(Long id) {
-        return medicoRepository.findById(id)
-                .map(medico -> {
-                    medico.setAtivo(true);
-                    medicoRepository.save(medico);
-                    return medicoMapper.toDTO(medico);
-                })
-                .orElseThrow(() -> new IllegalArgumentException("Médico não encontrado com o ID: " + id));
+        return medicoRepository.findById(id).map(medico -> {
+            medico.setAtivo(true);
+            medicoRepository.save(medico);
+            return medicoMapper.toDTO(medico);
+        }).orElseThrow(() -> new IllegalArgumentException("Médico não encontrado com o ID: " + id));
     }
 }

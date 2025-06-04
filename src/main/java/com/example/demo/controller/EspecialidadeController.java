@@ -1,16 +1,5 @@
 package com.example.demo.controller;
 
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.dto.EspecialidadeDTO;
-import com.example.demo.service.EspecialidadeService;
-import com.example.demo.service.Utils.ApiResponse;
-import com.example.demo.service.Utils.ErrorResponse;
-
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +10,19 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.dto.EspecialidadeDTO;
+import com.example.demo.service.EspecialidadeService;
+import com.example.demo.service.Utils.ApiResponse;
+import com.example.demo.service.Utils.ErrorResponse;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 
 // Aqui você pode adicionar os métodos para gerenciar especialidades, como listar, buscar por ID, 
 //criar, atualizar e excluir especialidades.
@@ -38,7 +37,8 @@ public class EspecialidadeController {
 
     @Operation(summary = "Cria uma nova especialidade", description = "Cadastra uma nova especialidade no sistema")
     @PostMapping
-    public ResponseEntity<ApiResponse<EspecialidadeDTO>> criarEspecialidade(@Valid @RequestBody EspecialidadeDTO especialidadeDTO) {
+    public ResponseEntity<ApiResponse<EspecialidadeDTO>> criarEspecialidade(
+            @Valid @RequestBody EspecialidadeDTO especialidadeDTO) {
         try {
             // para tentar salvar o especialidade
             EspecialidadeDTO savedEspecialidade = especialidadeService.salvar(especialidadeDTO);
