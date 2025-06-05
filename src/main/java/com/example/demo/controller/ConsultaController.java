@@ -59,7 +59,7 @@ public class ConsultaController {
     public ResponseEntity<ApiResponse<List<ConsultaDTO>>> listar(
             @RequestParam(name = "medico-id", required = false) @Parameter(description = "ID do médico para filtrar consultas", example = "1") Long medicoId,
             @RequestParam(name = "paciente-id", required = false) @Parameter(description = "ID do paciente para filtrar consultas", example = "1") Long pacienteId,
-            @RequestParam(required = false) @Parameter(description = "Status da consulta. Ex.: agendada, confirmada, cancelada", example = "CONFIRMADA") String status,
+            @RequestParam(required = false) @Parameter(description = "Status da consulta. Ex.: agendada, concluida, cancelada", example = "agendada") String status,
             @RequestParam(name = "data-inicio", required = false) @Parameter(description = "Data e hora de início para filtrar consultas", example = "2023-10-01T10:00:00") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicio,
             @RequestParam(name = "data-fim", required = false) @Parameter(description = "Data e hora de fim para filtrar consultas", example = "2023-10-31T18:00:00") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFim) {
 
