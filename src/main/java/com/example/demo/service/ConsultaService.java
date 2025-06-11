@@ -54,6 +54,14 @@ public class ConsultaService {
         Medico medico = medicoRepository.findById(consultaDTO.getMedicoId())
                 .orElseThrow(() -> new IllegalArgumentException("Médico não encontrado"));
 
+        if (medico.isAtivo() == false) {
+            throw new IllegalArgumentException("Médico não está ativo");
+        }
+
+        if (paciente.isAtivo() == false) {
+            throw new IllegalArgumentException("Paciente não está ativo");
+        }
+
         LocalDateTime dataHora = consultaDTO.getDataHora();
 
         if (dataHora.isBefore(LocalDateTime.now())) {
@@ -111,7 +119,7 @@ public class ConsultaService {
             LocalDateTime dataFim) {
         List<String> statusList = List.of(STATUS_AGENDADA, STATUS_CANCELADA, STATUS_CONCLUIDA);
         if (status != null && (!statusList.contains(status) || status.isEmpty())) {
-            throw new IllegalArgumentException("Status inválido. Use: Agendada, Cancelada ou Concluída");
+            throw new IllegalArgumentException("Status inválido. Use: agendada, cancelada ou concluida");
         }
 
         if (dataInicio != null && dataFim != null && dataInicio.isAfter(dataFim)) {
@@ -138,7 +146,7 @@ public class ConsultaService {
     public ConsultaDTO atualizarStatus(Long id, String novoStatus) {
         if (!STATUS_AGENDADA.equals(novoStatus) && !STATUS_CANCELADA.equals(novoStatus)
                 && !STATUS_CONCLUIDA.equals(novoStatus)) {
-            throw new IllegalArgumentException("Status inválido. Use: Agendada, Cancelada ou Concluída");
+            throw new IllegalArgumentException("Status inválido. Use: agendada, cancelada ou concluida");
         }
 
         Consulta consulta = consultaRepository.findById(id)

@@ -9,6 +9,7 @@ import com.example.demo.Entities.Disponibilidade;
 import com.example.demo.dto.DisponibilidadeDTO;
 import com.example.demo.mapper.DisponibilidadeMapper;
 import com.example.demo.repository.IDisponibilidadeRepository;
+import com.example.demo.repository.IMedicoRepository;
 
 @Service
 public class DisponibilidadeService {
@@ -19,13 +20,13 @@ public class DisponibilidadeService {
     @Autowired
     private IDisponibilidadeRepository disponibilidadeRepository;
 
+    @Autowired
+    private IMedicoRepository medicoRepository;
+
     public DisponibilidadeDTO registrarDisponibilidade(Long medicoId, DisponibilidadeDTO disponibilidadeDTO) {
-        /*
-         * Disponibilidade disponibilidade = disponibilidadeMapper.toEntity(medicoId,
-         * disponibilidadeDTO.getDiaDaSemana(), disponibilidadeDTO.getHorarioInicio(),
-         * disponibilidadeDTO.getHorarioFim());
-         */
         Disponibilidade disponibilidade = disponibilidadeMapper.toEntity(disponibilidadeDTO);
+        disponibilidade.setMedico(medicoRepository.findById(medicoId)
+                .orElseThrow(() -> new IllegalArgumentException("Medico não encontrado com o ID: " + medicoId)));
         return disponibilidadeMapper.toDTO(disponibilidadeRepository.save(disponibilidade));
     }
 
